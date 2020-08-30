@@ -1,0 +1,10 @@
+<div class="tile-item"
+  (click)="showTile($event)"
+  #tileRef>
+  <img
+    [@tileAnimation]="tileAnimationState()"
+    (@tileAnimation.start)="blockTile(tile)"
+    (@tileAnimation.done)="checkTile(tile)"
+    [src]="tile.path" 
+    (load)="tileLoaded()">
+</div>

@@ -1,0 +1,24 @@
+.no-cursor {
+  cursor: none !important;
+}
+
+.tile-item {
+  padding: .5rem;
+  border-radius: .5rem;
+  background-color: lightgrey;
+  cursor: pointer;
+
+  img {
+    display: block;
+    width: 100%;
+    height: auto;
+    opacity: 0;
+
+    user-drag: none;
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-drag: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+  }
+}

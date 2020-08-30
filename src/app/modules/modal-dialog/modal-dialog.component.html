@@ -1,0 +1,32 @@
+<div class="overlay" #overlay (click)="clickOnOverlay($event)">
+  <div *ngIf="getShowDialog() | async" 
+    class="modal-dialog"
+    @modalState (@modalState.done)="onAnimationEvent()"
+    (click)="clickOnModal($event)">
+    <div class="modal-content px-2">
+      <div class="modal-header">
+        <h5 class="modal-title" [innerHTML]="title() | safeHtml"></h5>
+        <button
+          *ngIf="!haveButtons()"
+          type="button" class="close"
+          (click)="closeDialog($event)">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>      
+      <div class="modal-body">
+        <p [innerHTML]="message() | safeHtml"></p>
+      </div>
+      <ng-container *ngIf="haveButtons()">
+        <div class="modal-footer">
+          <ng-container *ngFor="let item of buttons()">
+            <button type="button"
+              class="btn btn-primary" 
+              [ngClass]="classButton(item)"
+              [innerHTML]="item.label | safeHtml"
+              (click)="actionButton($event, item)"></button>
+          </ng-container>
+        </div>
+      </ng-container>
+    </div>
+  </div>
+</div>

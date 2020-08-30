@@ -1,0 +1,15 @@
+<div class="row mb-md-3 pb-2">
+  <div class="col-12 mb-1">
+    {{ 'level-selector.title' | translate }}
+  </div>
+  <div class="col-12">
+    <div class="btn-group btn-group-toggle" data-toggle="buttons">
+      <ng-container *ngFor="let level of levelsValues; let isFirst = first">
+        <label class="btn btn-primary" [ngClass]="{ 'disabled': (gameService.started | async) }">
+          <input type="radio" (click)="selectLevel(level)" [checked]="isFirst"
+            [disabled]="(gameService.started | async)">{{ getLevelString(level) }}
+        </label>
+      </ng-container>
+    </div>
+  </div>
+</div>

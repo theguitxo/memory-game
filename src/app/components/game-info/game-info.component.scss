@@ -1,0 +1,23 @@
+h3 {
+  display: flex;
+  align-items: center;
+  align-content: center;
+
+  .title-icon {
+    height: 2rem;
+    width: auto;
+    margin-right: 0.5rem;
+  }
+}
+
+.table {
+  img {
+    height: 2rem;
+    width: auto;
+    margin-right: 1rem;
+  }
+
+  th {
+    width: 50%;
+  }
+}

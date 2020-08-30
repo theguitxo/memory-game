@@ -1,0 +1,40 @@
+<div class="container-lg">
+  <app-header></app-header>
+  <div class="row px-2">
+    <div class="col-12 col-md-9 py-2">
+      <!-- game info -->
+      <app-game-info *ngIf="!(getGameStarted() | async)"></app-game-info>
+      <!-- game grid -->
+      <app-game-grid *ngIf="getGameStarted() | async"></app-game-grid>
+    </div>
+    <div class="col-12 col-md-3 py-2">
+      <!-- level selector -->              
+      <app-level-selector></app-level-selector>      
+      <!-- play / finish button -->
+      <app-game-buttons></app-game-buttons>
+      <!-- game crono -->
+      <app-game-crono></app-game-crono>
+      <!-- game moves -->
+      <app-game-movements></app-game-movements>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      Iconos diseñados por <a href="https://www.flaticon.es/autores/pixel-perfect" title="Pixel perfect">Pixel perfect</a>
+      from <a href="https://www.flaticon.es/" title="Flaticon"> www.flaticon.es</a>
+    </div>
+    <div class="col-12">
+      Iconos diseñados por <a href="https://www.flaticon.es/autores/freepik" title="Freepik">Freepik</a>
+      from <a href="https://www.flaticon.es/" title="Flaticon">www.flaticon.es</a>
+    </div>
+    <div class="col-12">
+      Iconos diseñados por <a href="https://www.flaticon.es/autores/freepik" title="Freepik">Freepik</a>
+      from <a href="https://www.flaticon.es/" title="Flaticon">www.flaticon.es</a>
+    </div>
+    <div>
+      Iconos diseñados por <a href="https://www.flaticon.es/autores/freepik" title="Freepik">Freepik</a> from <a
+      href="https://www.flaticon.es/" title="Flaticon">www.flaticon.es</a>
+    </div>
+  </div>  
+</div>
+<app-modal-dialog></app-modal-dialog>

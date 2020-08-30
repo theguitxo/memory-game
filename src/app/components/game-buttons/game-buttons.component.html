@@ -1,0 +1,10 @@
+<div class="row">
+  <div class="col-6 col-md-12">
+    <button type="button" class="btn btn-primary btn-block rounded-pill" [disabled]="(gameService.started | async)"
+      (click)="playGame()">{{ 'game-buttons.play.title' | translate  }}</button>
+  </div>
+  <div class="col-6 col-md-12 mt-md-1">
+    <button type="button" class="btn btn-primary btn-block rounded-pill" [disabled]="!(gameService.started | async)"
+      (click)="stopGame()">{{ 'game-buttons.finish.title' | translate  }}</button>
+  </div>
+</div>

@@ -1,0 +1,79 @@
+{
+  "title": "Juego de memoria",
+  "language-selector": {
+    "title": "Elegir idioma",
+    "languages": {
+      "es": {
+        "title": "Español",
+        "icon": "048-spanish-language"
+      },
+      "en": {
+        "title": "Inglés",
+        "icon": "050-english-language"
+      }
+    }
+  },
+  "level-selector": {
+    "title": "Elegir dificultad",
+    "levels": {
+      "easy": {
+        "title": "Fácil"
+      },
+      "medium": {
+        "title": "Medio"
+      },
+      "hard": {
+        "title": "Difícil"
+      }
+    }
+  },
+  "game-buttons": {
+    "play": {
+      "title": "Jugar"
+    },
+    "finish": {
+      "title": "Finalizar"
+    }
+  },
+  "game-crono": {
+    "title": "Tiempo de juego"
+  },
+  "finish-dialog": {
+    "title": "Finalizar juego",
+    "message": "¿Seguro que quiere finalizar la partida?",
+    "accept-button": "Aceptar",
+    "cancel-button": "Cancelar"
+  },
+  "game-movements": {
+    "title": "Movimientos"
+  },
+  "finish-message": {
+    "title": "Juego terminado",
+    "quit-game": "Has salido del juego. ¡Suerte la próxima!",
+    "win-game": "¡Felicidades! ¡Has ganado el juego!"
+  },
+  "game-info": {
+    "title": "Información",
+    "text-1": "Clásico juego de memoria donde se han de emparejar las tarjetas iguales, descubriendo dos en cada turno.",
+    "text-2": "Hay tres niveles de dificultad.",
+    "levels-list": {
+      "easy": {
+        "title": "Fácil",
+        "text": "8 parejas de tarjetas."
+      },
+      "medium": {
+        "title": "Medio",
+        "text": "18 parejas de tarjetas."
+      },
+      "hard": {
+        "title": "Difícil",
+        "text": "32 parejas de tarjetas."
+      }
+    },
+    "solved": {
+      "intro": "Estos son los datos de tú ultima partida.",
+      "moves": "Has usado estos movimientos:",
+      "time": "Has usado este tiempo:"
+    }
+  }
+}

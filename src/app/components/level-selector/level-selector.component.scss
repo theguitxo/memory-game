@@ -1,0 +1,8 @@
+.btn-group {
+  display: flex;
+  padding: auto .1rem;
+
+  .btn {
+    flex-grow: 1;
+  }
+}

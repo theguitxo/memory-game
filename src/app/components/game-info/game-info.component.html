@@ -1,0 +1,45 @@
+<ng-container *ngIf="gameService.playedMoves; else notFinishedGame">
+  <div class="row">
+    <div class="col-12 mb-4">{{ 'game-info.solved.intro' | translate }}</div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <table class="table">
+        <thead class="thead-dark">
+          <tr>
+            <th class="text-center"><img src="assets/icons/097-smartphone.svg">{{ 'game-info.solved.moves' | translate }}</th>
+            <th class="text-center"><img src="assets/icons/051-hourglass.svg">{{ 'game-info.solved.time'  | translate }}</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th class="text-center">{{ gameService.playedMoves }}</th>
+            <th class="text-center">{{ gameService.timePlayedString }}</th>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</ng-container>
+<ng-template #notFinishedGame>
+  <div class="row">
+    <div class="col-12">
+      <h3><img src="assets/icons/044-info.svg" class="title-icon">{{ 'game-info.title' | translate }}</h3>
+    </div>
+    <div class="col-12 my-1">{{ 'game-info.text-1' | translate }}</div>
+    <div class="col-12 my-1">{{ 'game-info.text-2' | translate }}</div>
+    <div class="col-12 my-1">
+      <ul>
+        <li>
+          <span class="font-weight-bold">{{ 'game-info.levels-list.easy.title' | translate }}:</span>&nbsp;<span>{{ 'game-info.levels-list.easy.text' | translate }}</span>
+        </li>
+        <li>
+          <span class="font-weight-bold">{{ 'game-info.levels-list.medium.title' | translate }}:</span>&nbsp;<span>{{ 'game-info.levels-list.medium.text' | translate }}</span>
+        </li>
+        <li>
+          <span class="font-weight-bold">{{ 'game-info.levels-list.hard.title' | translate }}:</span>&nbsp;<span>{{ 'game-info.levels-list.hard.text' | translate }}</span>
+        </li>
+      </ul>
+    </div>
+  </div>
+</ng-template>

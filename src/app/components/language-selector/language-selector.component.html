@@ -1,0 +1,18 @@
+<div class="dropdown">
+  <div   
+    id="language-selector" 
+    data-toggle="dropdown" aria-haspopup="true" 
+    aria-expanded="false">
+    <img src="assets/icons/traducir.svg">
+    <span class="d-none d-md-inline">{{ 'language-selector.title' | translate }}</span>
+  </div>
+  <ul class="dropdown-menu shadow-sm" aria-labelledby="language-selector">
+    <ng-container
+      *ngFor="let lang of langKeys">
+      <li class="dropdown-item" (click)="changeLanguage(lang)">
+        <img [src]="getLanguageIcon(lang) | async">
+        <span class="d-none d-md-inline">{{ getLanguageName(lang) }}</span>
+      </li>
+    </ng-container>
+  </ul>
+</div>
