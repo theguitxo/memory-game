@@ -62,8 +62,15 @@ export class ModalDialogService {
     return this._dialogSet;
   }
 
+  /**
+   * constructor method
+   */
   constructor() {}
 
+  /**
+   * sets the values for open a modal dialog
+   * @param data Dialog object with the values needed for open the dialog
+   */
   newDialog(data: Dialog): void {
     this._title = data.title;
     this._message = data.message;
@@ -73,6 +80,9 @@ export class ModalDialogService {
     this._dialogSet = true;
   }
 
+  /**
+   * opens the modal dialog
+   */
   openDialog(): void {
     if (this._dialogSet) {
       this._showDialog.next(true);
@@ -81,11 +91,17 @@ export class ModalDialogService {
     }
   }
 
+  /**
+   * 
+   */
   handleCloseDialog(): void {
     this._executeButton.next(this.closedCrossOverlay);
     this.closeDialog();
   }
 
+  /**
+   * closes the dialog modal
+   */
   closeDialog(): void {
     this._showDialog.next(false);
     this._title = '';
@@ -94,10 +110,17 @@ export class ModalDialogService {
     this._dialogSet = false;
   }
 
+  /**
+   * emits an event when a button is clicked
+   * @param id identificator of the action of the button
+   */
   actionButton(id: string): void {
     this._executeButton.next(id);
   }
 
+  /**
+   * emits that the modal has closed
+   */
   dialogIsClosed(): void {
     if (this._emitOnClose) {
       this._isClosed.next();
