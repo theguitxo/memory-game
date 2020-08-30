@@ -1,19 +1,22 @@
-import { Component, ChangeDetectionStrategy, OnInit, OnDestroy, Renderer2, ViewChild, ElementRef } from "@angular/core";
+import {
+  Component, ChangeDetectionStrategy,
+  OnInit, OnDestroy, Renderer2, ViewChild, ElementRef,
+} from '@angular/core';
 import { ModalDialogService } from './modal-dialog.service';
 import { Observable, Subscription } from 'rxjs';
 import { Button } from './modal-dialog.interface';
-import { buttonType } from './modal-dialog.enum';
+import { ButtonType } from './modal-dialog.enum';
 import { trigger, transition, style, animate, state } from '@angular/animations';
 
 const CLASS_BUTTON = {
-  [`${buttonType.primary}`]: 'btn-primary',
-  [`${buttonType.secondary}`]: 'btn-secondary',
-  [`${buttonType.success}`]: 'btn-success',
-  [`${buttonType.danger}`]: 'btn-danger',
-  [`${buttonType.warning}`]: 'btn-warning',
-  [`${buttonType.info}`]: 'btn-info',
-  [`${buttonType.light}`]: 'btn-light',
-  [`${buttonType.dark}`]: 'btn-dark',
+  [`${ButtonType.primary}`]: 'btn-primary',
+  [`${ButtonType.secondary}`]: 'btn-secondary',
+  [`${ButtonType.success}`]: 'btn-success',
+  [`${ButtonType.danger}`]: 'btn-danger',
+  [`${ButtonType.warning}`]: 'btn-warning',
+  [`${ButtonType.info}`]: 'btn-info',
+  [`${ButtonType.light}`]: 'btn-light',
+  [`${ButtonType.dark}`]: 'btn-dark',
 };
 
 @Component({
@@ -38,7 +41,7 @@ const CLASS_BUTTON = {
       transition(':leave', [
         animate('500ms', style(
           {
-            opacity: 0 
+            opacity: 0,
           }
         ))
       ])
@@ -47,7 +50,6 @@ const CLASS_BUTTON = {
 })
 export class ModalDialogComponent implements OnInit, OnDestroy {
   private showDialogSubscription: Subscription;
-  
   private _overlayRef: ElementRef;
   @ViewChild('overlay') set overlayRef(overlayRef: ElementRef) {
     this._overlayRef = overlayRef;
@@ -144,7 +146,7 @@ export class ModalDialogComponent implements OnInit, OnDestroy {
    * @param item the button to get the class
    */
   classButton(item: Button): string {
-    return CLASS_BUTTON[item.type ? item.type : buttonType.primary];
+    return CLASS_BUTTON[item.type ? item.type : ButtonType.primary];
   }
 
   /**

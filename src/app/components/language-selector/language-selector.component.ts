@@ -54,7 +54,7 @@ export class LanguageSelectorComponent implements OnInit {
    * gets the icon of a language
    * @param lang id of the language
    */
-  getLanguageIcon(lang: string): Observable<string> {    
+  getLanguageIcon(lang: string): Observable<string> {
     return this.translate.get(`language-selector.languages.${lang}.icon`)
       .pipe(map(data => `assets/icons/${data}.svg`));
   }

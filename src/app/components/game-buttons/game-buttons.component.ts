@@ -3,7 +3,7 @@ import { GameService } from 'src/app/services/game.service';
 import { ModalDialogService } from 'src/app/modules/modal-dialog/modal-dialog.service';
 import { Subscription } from 'rxjs';
 import { TranslateService } from '@ngx-translate/core';
-import { buttonType } from 'src/app/modules/modal-dialog/modal-dialog.enum';
+import { ButtonType } from 'src/app/modules/modal-dialog/modal-dialog.enum';
 
 const ID_ACCEPT_BUTTON = 'accept-button';
 const ID_CANCEL_BUTTON = 'cancel-button';
@@ -19,7 +19,7 @@ export class GameButtonsComponent implements OnInit, OnDestroy {
   private cancelAction: Subscription;
 
   /**
-   * 
+   * constructor method
    * @param gameService instance of the service that manage the game
    * @param modalDialogService instance of the service for the modal dialog
    * @param translate instance of the service for translations
@@ -60,7 +60,7 @@ export class GameButtonsComponent implements OnInit, OnDestroy {
    * stopGame
    * stops the game
    */
-  stopGame(): void {    
+  stopGame(): void {
     this.gameService.stopGame();
 
     this.modalDialogService.newDialog({
@@ -70,18 +70,18 @@ export class GameButtonsComponent implements OnInit, OnDestroy {
         {
           id: ID_ACCEPT_BUTTON,
           label: this.translate.instant(`finish-dialog.${ID_ACCEPT_BUTTON}`),
-          type: buttonType.primary,
+          type: ButtonType.primary,
         },
         {
           id: ID_CANCEL_BUTTON,
           label: this.translate.instant(`finish-dialog.${ID_CANCEL_BUTTON}`),
-          type: buttonType.secondary,
+          type: ButtonType.secondary,
         },
       ],
       clickOverlayCloses: true,
       emitOnClose: true,
     });
-    this.modalDialogService.openDialog();   
+    this.modalDialogService.openDialog();
   }
 
   /**
@@ -99,7 +99,7 @@ export class GameButtonsComponent implements OnInit, OnDestroy {
         });
         this.modalDialogService.openDialog();
       });
-      this.modalDialogService.closeDialog();      
+      this.modalDialogService.closeDialog();
       this.gameService.finishGame();
     } else if (idAction === ID_CANCEL_BUTTON || idAction === this.modalDialogService.closedCrossOverlay) {
       this.modalDialogService.closeDialog();

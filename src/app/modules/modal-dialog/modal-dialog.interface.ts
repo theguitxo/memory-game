@@ -1,9 +1,9 @@
-import { buttonType } from './modal-dialog.enum';
+import { ButtonType } from './modal-dialog.enum';
 
 export interface Button {
   id: string;
   label: string;
-  type?: buttonType;
+  type?: ButtonType;
 }
 
 export interface Dialog {

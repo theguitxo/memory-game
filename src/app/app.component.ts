@@ -12,7 +12,7 @@ import { TranslateService } from '@ngx-translate/core';
 export class AppComponent implements OnInit {
   /**
    * constructor method
-   * @param gameService instance for the services that manage the game 
+   * @param gameService instance for the services that manage the game
    * @param modalDialogService instance for the service of the model dialog
    * @param translate instance for the service of translations
    */

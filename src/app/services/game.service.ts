@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable, BehaviorSubject, timer, Subject } from 'rxjs';
 import { takeUntil, map, repeatWhen } from 'rxjs/operators';
 import { levels, levelNames, tiles } from '../enums/enums';
-import { tileImage } from '../interfaces/tile-image';
+import { TileImage } from '../interfaces/tile-image';
 
 @Injectable({
   providedIn: 'root'
@@ -23,10 +23,10 @@ export class GameService {
   private _secondsPlayed;
   private _secondsCrono;
   private _level: levels = levels.easy;
-  private _tiles: Array<tileImage>;
+  private _tiles: Array<TileImage>;
   private _gameTilesKeys: Array<string>;
-  private _selectedTile1: tileImage;
-  private _selectedTile2: tileImage;
+  private _selectedTile1: TileImage;
+  private _selectedTile2: TileImage;
   private _tilesBlocked: boolean;
   private _points: number;
   private _movements: number;
@@ -95,7 +95,7 @@ export class GameService {
     return levelNames.hard;
   }
 
-  get tiles(): Array<tileImage> {
+  get tiles(): Array<TileImage> {
     return this._tiles;
   }
 
@@ -153,7 +153,7 @@ export class GameService {
       .concat(this._gameTilesKeys.slice(0, totalImages));
     this._tiles = Array(this._totalGameTiles).fill('').map(() => {
       const tileId = images.splice(Math.floor(Math.random() * images.length), 1).toString();
-      const tile: tileImage = {
+      const tile: TileImage = {
         id: tileId,
         path: `/assets/tiles/${tiles[tileId]}`,
         fixed: false,
@@ -255,7 +255,7 @@ export class GameService {
    * set the tile chosen by the user and,
    * if it the second, checks if there are equals
    */
-  setTurnTile(tile: tileImage): void {
+  setTurnTile(tile: TileImage): void {
     if (!this._selectedTile1) {
       this._selectedTile1 = tile;
       this._tilesBlocked = false;      

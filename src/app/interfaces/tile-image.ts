@@ -1,4 +1,4 @@
-export interface tileImage {
+export interface TileImage {
   id: string;
   path: string;
   fixed: boolean;

@@ -1,5 +1,9 @@
-import { Component, OnInit, Input, ChangeDetectionStrategy, OnDestroy, ChangeDetectorRef, Renderer2, ViewChild, ElementRef } from '@angular/core';
-import { tileImage } from 'src/app/interfaces/tile-image';
+import {
+  Component, OnInit, Input,
+  ChangeDetectionStrategy, OnDestroy, ChangeDetectorRef,
+  Renderer2, ViewChild, ElementRef,
+} from '@angular/core';
+import { TileImage } from 'src/app/interfaces/tile-image';
 import { GameService } from 'src/app/services/game.service';
 import { trigger, style, state, transition, animate } from '@angular/animations';
 import { Subscription } from 'rxjs';
@@ -17,14 +21,14 @@ enum tileStates {
   animations: [
     trigger('tileAnimation', [
       state(tileStates.show.toString(), style({ opacity: 1 })),
-      state(tileStates.hidden.toString(), style({ opacity: 0 })),      
+      state(tileStates.hidden.toString(), style({ opacity: 0 })),
       transition(`${tileStates.show} <=> ${tileStates.hidden}`, animate('300ms ease-in')),
     ]),
   ]
 })
 export class TileItemComponent implements OnInit, OnDestroy {
 
-  @Input() tile: tileImage;
+  @Input() tile: TileImage;
   @ViewChild('tileRef') tileRef: ElementRef;
 
   tileState: tileStates = tileStates.hidden;
@@ -48,13 +52,13 @@ export class TileItemComponent implements OnInit, OnDestroy {
    * starts a subscription to control that an icon has closed and other to control that must show the cursor
    */
   ngOnInit(): void {
-    this.hideTileSubscription = this.gameService.hideTiles.subscribe(() => { 
-      if (this.tileState === tileStates.show && !this.tile.fixed) {        
+    this.hideTileSubscription = this.gameService.hideTiles.subscribe(() => {
+      if (this.tileState === tileStates.show && !this.tile.fixed) {
         this.tileState = tileStates.hidden;
-        this.cdr.markForCheck();  
-      }      
+        this.cdr.markForCheck();
+      }
     });
-    this.showCursorSubscription = this.gameService.showCursor.subscribe(() => {      
+    this.showCursorSubscription = this.gameService.showCursor.subscribe(() => {
       this.showCursor();
     });
   }
@@ -102,7 +106,7 @@ export class TileItemComponent implements OnInit, OnDestroy {
    * hides the cursors, because the tile actions are blocked
    * @param tile an object tile
    */
-  blockTile(tile: tileImage): void {
+  blockTile(tile: TileImage): void {
     this.hideCursor();
   }
 
@@ -111,11 +115,11 @@ export class TileItemComponent implements OnInit, OnDestroy {
    * checks the state of the tile for execute the actions according the state
    * @param tile an object tile
    */
-  checkTile(tile: tileImage): void {
+  checkTile(tile: TileImage): void {
     if (this.tileState === tileStates.show) {
       this.gameService.setTurnTile(tile);
     } else if (this.tileState === tileStates.hidden) {
-      this.gameService.tilesBlocked = false;      
+      this.gameService.tilesBlocked = false;
     }
     if (!this.gameService.secondTileSetted) {
       this.showCursor();

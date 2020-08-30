@@ -1,6 +1,6 @@
 import { Component, ChangeDetectionStrategy, ViewChild, Renderer2, ElementRef, AfterViewInit } from '@angular/core';
 import { GameService } from 'src/app/services/game.service';
-import { tileImage } from 'src/app/interfaces/tile-image';
+import { TileImage } from 'src/app/interfaces/tile-image';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -32,13 +32,13 @@ export class GameGridComponent implements AfterViewInit {
         this.renderer.removeStyle(this.gridContainer.nativeElement, 'opacity');
         this.gameService.startCronoGame();
       }
-    });  
+    });
   }
 
   /**
    * returns the tiles used in the game
    */
-  getGameTiles(): Array<tileImage> {
+  getGameTiles(): Array<TileImage> {
     return this.gameService.tiles;
   }
 

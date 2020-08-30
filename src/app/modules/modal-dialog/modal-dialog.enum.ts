@@ -1,4 +1,4 @@
-export enum buttonType {
+export enum ButtonType {
   primary,
   secondary,
   success,
