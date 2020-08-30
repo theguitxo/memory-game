@@ -9,13 +9,22 @@ import { TranslateService } from '@ngx-translate/core';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements OnInit {  
+export class AppComponent implements OnInit {
+  /**
+   * constructor method
+   * @param gameService instance for the services that manage the game 
+   * @param modalDialogService instance for the service of the model dialog
+   * @param translate instance for the service of translations
+   */
   constructor(
     private gameService: GameService,
     private modalDialogService: ModalDialogService,
     private translate: TranslateService,
   ) {}
 
+  /**
+   * ngOnInit inits a subscription to control when user wins the game
+   */
   ngOnInit(): void {
     this.gameService.winedGame.subscribe(
       (value) => {
@@ -31,6 +40,9 @@ export class AppComponent implements OnInit {
     );
   }
 
+  /**
+   * returns if the game is started or not
+   */
   getGameStarted(): Observable<boolean> {
     return this.gameService.started;
   }
