@@ -1,4 +1,4 @@
-<ng-container *ngIf="!(getTilesOk() | async)">
+<ng-container *ngIf="(getTilesOk() | async) === false">
   <div>loading tiles...</div>  
 </ng-container>
 <div class="grid-container" style="height: 0; opacity: 0;" #gridContainer>  

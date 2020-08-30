@@ -3,9 +3,9 @@
   <div class="row px-2">
     <div class="col-12 col-md-9 py-2">
       <!-- game info -->
-      <app-game-info *ngIf="!(getGameStarted() | async)"></app-game-info>
+      <app-game-info *ngIf="(getGameStarted() | async) === false"></app-game-info>
       <!-- game grid -->
-      <app-game-grid *ngIf="getGameStarted() | async"></app-game-grid>
+      <app-game-grid *ngIf="(getGameStarted() | async)"></app-game-grid>
     </div>
     <div class="col-12 col-md-3 py-2">
       <!-- level selector -->              

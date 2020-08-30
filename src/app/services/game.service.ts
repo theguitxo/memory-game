@@ -78,7 +78,7 @@ export class GameService {
   get secondsPlayed(): number {
     return this._secondsPlayed;
   }
-  
+
   get level(): levels {
     return this._level;
   }
@@ -121,7 +121,7 @@ export class GameService {
   get playedMoves(): number {
     return this._playedMoves;
   }
-  
+
   get secondTileSetted(): boolean {
     return (this._selectedTile2 !== undefined && this._selectedTile2 !== null);
   }
@@ -135,7 +135,7 @@ export class GameService {
     const tilesKeys: Array<string> = Object.keys(tiles);
     this._gameTilesKeys = [];
 
-    while(this._gameTilesKeys.length < (Math.pow(levels.hard, 2) / 2)) {
+    while (this._gameTilesKeys.length < (Math.pow(levels.hard, 2) / 2)) {
       this._gameTilesKeys.push(tilesKeys.splice(Math.floor(Math.random() * tilesKeys.length), 1).toString());
     }
   }
@@ -157,7 +157,7 @@ export class GameService {
         id: tileId,
         path: `/assets/tiles/${tiles[tileId]}`,
         fixed: false,
-      }
+      };
       return tile;
     });
   }
@@ -175,7 +175,7 @@ export class GameService {
   /**
    * starts the game, inits properties and the grid
    */
-  startGame(): void {    
+  startGame(): void {
     this._movements = 0;
     this._points = 0;
     this._started.next(true);
@@ -189,13 +189,13 @@ export class GameService {
     this._secondsPlayed = 0;
     this._secondsCrono = 0;
     this._cronoOn.next(true);
-    this.playCrono();    
+    this.playCrono();
   }
 
   /**
    * stops the game when user clicks on finish button
    */
-  stopGame(): void {  
+  stopGame(): void {
     this._stopCrono.next();
     this._secondsCrono = this._secondsPlayed;
   }
@@ -209,7 +209,7 @@ export class GameService {
     this._crono = null;
     this._movements = 0;
     this._started.next(false);
-    this._winedGame.next(win);   
+    this._winedGame.next(win);
   }
 
   /**
@@ -258,11 +258,11 @@ export class GameService {
   setTurnTile(tile: TileImage): void {
     if (!this._selectedTile1) {
       this._selectedTile1 = tile;
-      this._tilesBlocked = false;      
+      this._tilesBlocked = false;
     } else {
       this._selectedTile2 = tile;
       this.checkSelectedTiles();
-    }    
+    }
   }
 
   /**
@@ -271,7 +271,7 @@ export class GameService {
    * otherwise, hide the tiles
    */
   private checkSelectedTiles(): void {
-    let success: boolean = false;
+    let success = false;
     this._movements++;
     if (this._selectedTile1.id === this._selectedTile2.id) {
       this._selectedTile1.fixed = true;
@@ -298,7 +298,7 @@ export class GameService {
   }
 
   /**
-   * reset the properties that contain the 
+   * reset the properties that contain the
    * information of the chosen tiles
    */
   private resetSelectedTiles(): void {
