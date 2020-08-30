@@ -18,26 +18,48 @@ export class GameButtonsComponent implements OnInit, OnDestroy {
 
   private cancelAction: Subscription;
 
+  /**
+   * 
+   * @param gameService instance of the service that manage the game
+   * @param modalDialogService instance of the service for the modal dialog
+   * @param translate instance of the service for translations
+   */
   constructor(
     public gameService: GameService,
     private modalDialogService: ModalDialogService,
     private translate: TranslateService,
   ) { }
 
+  /**
+   * ngOnInit
+   * starts a subscription for the buttons of the dialog modal
+   */
   ngOnInit() {
     this.cancelAction = this.modalDialogService.executeButton.subscribe((idAction) => {
       this.handleCancelAction(idAction);
     });
   }
 
+  /**
+   * ngOnDestroy
+   * removes the subscription for the buttons of the dialog model
+   */
   ngOnDestroy() {
     this.cancelAction.unsubscribe();
   }
 
+  /**
+   * playGame
+   * starts the game
+   */
   playGame(): void {
     this.gameService.startGame();
   }
 
+  /**
+   * stopGame
+   * stops the game
+   */
   stopGame(): void {    
     this.gameService.stopGame();
 
@@ -62,6 +84,11 @@ export class GameButtonsComponent implements OnInit, OnDestroy {
     this.modalDialogService.openDialog();   
   }
 
+  /**
+   * handelCancelAction
+   * manages the actions when the user cancels a dialog
+   * @param idAction identificator for the action of the button
+   */
   handleCancelAction(idAction: string): void {
     if (idAction === ID_ACCEPT_BUTTON) {
       this.modalDialogService.isClosed.subscribe(() => {

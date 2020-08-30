@@ -9,11 +9,20 @@ import { GameService } from 'src/app/services/game.service';
 })
 export class GameCronoComponent implements OnInit {
 
+  /**
+   * constructor method
+   * @param gameService instance of the service that manage the game
+   * @param cdr instance of the service for detect changes
+   */
   constructor(
     public gameService: GameService,
     private cdr: ChangeDetectorRef,
   ) { }
 
+  /**
+   * ngOnInit
+   * starts a subscription to control if the crono is started to check the changes in the view
+   */
   ngOnInit(): void {
     this.gameService.cronoOn.subscribe(() => {
       this.cdr.markForCheck();
