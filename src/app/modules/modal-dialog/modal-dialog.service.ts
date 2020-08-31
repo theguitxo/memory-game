@@ -7,59 +7,59 @@ import { Button, Dialog } from './modal-dialog.interface';
 })
 export class ModalDialogService {
 
-  private _showDialog = new BehaviorSubject<boolean>(false);
-  private _executeButton = new Subject<string>();
-  private _isClosed = new Subject<void>();
+  private showDialog$ = new BehaviorSubject<boolean>(false);
+  private executeButton$ = new Subject<string>();
+  private isClosed$ = new Subject<void>();
 
-  private _title: string;
-  private _message: string;
-  private _buttons: Button[] = [];
-  private _clickOverlayCloses: boolean;
-  private _emitOnClose: boolean;
+  private title$: string;
+  private message$: string;
+  private buttons$: Button[] = [];
+  private clickOverlayCloses$: boolean;
+  private emitOnClose$: boolean;
 
-  private _dialogSet: boolean = false;
-  private readonly _closedCrossOverlay: string = 'closed.cross.overlay';
+  private dialogSet$ = false;
+  private readonly closedCrossOverlay$: string = 'closed.cross.overlay';
 
   /* GETTERS AND SETTERS */
 
   /* OBSERVABLES */
   get showDialog(): Observable<boolean> {
-    return this._showDialog.asObservable();
+    return this.showDialog$.asObservable();
   }
   get executeButton(): Observable<string> {
-    return this._executeButton.asObservable();
+    return this.executeButton$.asObservable();
   }
   get isClosed(): Observable<void> {
-    return this._isClosed.asObservable();
+    return this.isClosed$.asObservable();
   }
 
   /* PROPERTIES */
   get title(): string {
-    return this._title;
+    return this.title$;
   }
   set title(value: string) {
-    this._title = value;
+    this.title$ = value;
   }
   get message(): string {
-    return this._message;
+    return this.message$;
   }
   set message(value: string) {
-    this._message = value;
+    this.message$ = value;
   }
   set button(value: Button) {
-    this._buttons.push(value);
+    this.buttons$.push(value);
   }
   get buttons(): Button[] {
-    return this._buttons;
+    return this.buttons$;
   }
   get clickOverlayCloses(): boolean {
-    return this._clickOverlayCloses;
+    return this.clickOverlayCloses$;
   }
   get closedCrossOverlay(): string {
-    return this._closedCrossOverlay;
+    return this.closedCrossOverlay$;
   }
   get dialogSet(): boolean {
-    return this._dialogSet;
+    return this.dialogSet$;
   }
 
   /**
@@ -72,30 +72,30 @@ export class ModalDialogService {
    * @param data Dialog object with the values needed for open the dialog
    */
   newDialog(data: Dialog): void {
-    this._title = data.title;
-    this._message = data.message;
-    this._buttons = data.buttons ? data.buttons : [];
-    this._clickOverlayCloses = data.clickOverlayCloses ? data.clickOverlayCloses : false;
-    this._emitOnClose = data.emitOnClose !== undefined ? data.emitOnClose : false;
-    this._dialogSet = true;
+    this.title$ = data.title;
+    this.message$ = data.message;
+    this.buttons$ = data.buttons ? data.buttons : [];
+    this.clickOverlayCloses$ = data.clickOverlayCloses ? data.clickOverlayCloses : false;
+    this.emitOnClose$ = data.emitOnClose !== undefined ? data.emitOnClose : false;
+    this.dialogSet$ = true;
   }
 
   /**
    * opens the modal dialog
    */
   openDialog(): void {
-    if (this._dialogSet) {
-      this._showDialog.next(true);
+    if (this.dialogSet$) {
+      this.showDialog$.next(true);
     } else {
       console.error(`Dialog data not set!`);
     }
   }
 
   /**
-   * 
+   * handle the behavior of buttons when are clicked
    */
   handleCloseDialog(): void {
-    this._executeButton.next(this.closedCrossOverlay);
+    this.executeButton$.next(this.closedCrossOverlay);
     this.closeDialog();
   }
 
@@ -103,11 +103,11 @@ export class ModalDialogService {
    * closes the dialog modal
    */
   closeDialog(): void {
-    this._showDialog.next(false);
-    this._title = '';
-    this._message = '';
-    this._buttons = [];
-    this._dialogSet = false;
+    this.showDialog$.next(false);
+    this.title$ = '';
+    this.message$ = '';
+    this.buttons$ = [];
+    this.dialogSet$ = false;
   }
 
   /**
@@ -115,15 +115,15 @@ export class ModalDialogService {
    * @param id identificator of the action of the button
    */
   actionButton(id: string): void {
-    this._executeButton.next(id);
+    this.executeButton$.next(id);
   }
 
   /**
    * emits that the modal has closed
    */
   dialogIsClosed(): void {
-    if (this._emitOnClose) {
-      this._isClosed.next();
+    if (this.emitOnClose$) {
+      this.isClosed$.next();
     }
   }
 }

@@ -1,4 +1,4 @@
-import { Component, ChangeDetectionStrategy } from '@angular/core';
+import { Component, ChangeDetectionStrategy, HostBinding } from '@angular/core';
 import { levels } from 'src/app/enums/enums';
 import { GameService } from 'src/app/services/game.service';
 import { TranslateService } from '@ngx-translate/core';
@@ -7,12 +7,11 @@ import { TranslateService } from '@ngx-translate/core';
   selector: 'app-level-selector',
   templateUrl: './level-selector.component.html',
   styleUrls: ['./level-selector.component.scss'],
-  host: {
-    'style': 'width: 100%'
-  },
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LevelSelectorComponent {
+
+  @HostBinding('style.width') width = '100%';
 
   levelsValues: string[] = [];
 

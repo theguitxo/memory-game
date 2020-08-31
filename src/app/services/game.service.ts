@@ -10,29 +10,29 @@ import { TileImage } from '../interfaces/tile-image';
 export class GameService {
 
   // Subjects and Behaviors
-  private _started: BehaviorSubject<boolean> =  new BehaviorSubject<boolean>(false);
-  private _cronoOn: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
-  private readonly _stopCrono = new Subject<void>();
-  private readonly _restartCrono = new Subject<void>();
-  private _tilesOk: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
-  private readonly _hideTiles: Subject<void> = new Subject<void>();
-  private readonly _showCursor = new Subject<void>();
-  private _winedGame = new Subject<boolean>();
+  private started$: BehaviorSubject<boolean> =  new BehaviorSubject<boolean>(false);
+  private cronoOn$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+  private readonly stopCrono$ = new Subject<void>();
+  private readonly restartCrono$ = new Subject<void>();
+  private tilesOk$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+  private readonly hideTiles$: Subject<void> = new Subject<void>();
+  private readonly showCursor$ = new Subject<void>();
+  private winedGame$ = new Subject<boolean>();
 
-  private _crono: Observable<string>;
-  private _secondsPlayed;
-  private _secondsCrono;
-  private _level: levels = levels.easy;
-  private _tiles: Array<TileImage>;
-  private _gameTilesKeys: Array<string>;
-  private _selectedTile1: TileImage;
-  private _selectedTile2: TileImage;
-  private _tilesBlocked: boolean;
-  private _points: number;
-  private _movements: number;
-  private _playedMoves: number;
-  private _totalGameTiles: number;
-  private _loadedGameTiles: number;
+  private crono$: Observable<string>;
+  private secondsPlayed$;
+  private secondsCrono$;
+  private level$: levels = levels.easy;
+  private tiles$: Array<TileImage>;
+  private gameTilesKeys$: Array<string>;
+  private selectedTile1$: TileImage;
+  private selectedTile2$: TileImage;
+  private tilesBlocked$: boolean;
+  private points$: number;
+  private movements$: number;
+  private playedMoves$: number;
+  private totalGameTiles$: number;
+  private loadedGameTiles$: number;
 
   /**
    * constructor method
@@ -46,72 +46,72 @@ export class GameService {
   /* OBSERVABLES */
 
   get started(): Observable<boolean> {
-    return this._started.asObservable();
+    return this.started$.asObservable();
   }
 
   get crono(): Observable<string> {
-    return this._crono;
+    return this.crono$;
   }
 
   get tilesOk(): Observable<boolean> {
-    return this._tilesOk.asObservable();
+    return this.tilesOk$.asObservable();
   }
 
   get cronoOn(): Observable<boolean> {
-    return this._cronoOn.asObservable();
+    return this.cronoOn$.asObservable();
   }
 
   get hideTiles(): Observable<void> {
-    return this._hideTiles.asObservable();
+    return this.hideTiles$.asObservable();
   }
 
   get showCursor(): Observable<void> {
-    return this._showCursor.asObservable();
+    return this.showCursor$.asObservable();
   }
 
   get winedGame(): Observable<boolean> {
-    return this._winedGame.asObservable();
+    return this.winedGame$.asObservable();
   }
 
   /* VALUES */
 
   get secondsPlayed(): number {
-    return this._secondsPlayed;
+    return this.secondsPlayed$;
   }
 
   get level(): levels {
-    return this._level;
+    return this.level$;
   }
   set level(value: levels) {
-    this._level = value;
+    this.level$ = value;
   }
 
   get levelName(): string {
-    if (this._level === levels.easy) {
+    if (this.level$ === levels.easy) {
       return levelNames.easy;
-    } else if (this._level === levels.medium) {
+    } else if (this.level$ === levels.medium) {
       return levelNames.medium;
     }
     return levelNames.hard;
   }
 
   get tiles(): Array<TileImage> {
-    return this._tiles;
+    return this.tiles$;
   }
 
   get tilesBlocked(): boolean {
-    return this._tilesBlocked;
+    return this.tilesBlocked$;
   }
   set tilesBlocked(value: boolean) {
-    this._tilesBlocked = value;
+    this.tilesBlocked$ = value;
   }
 
   get points(): number {
-    return this._points;
+    return this.points$;
   }
 
   get movements(): number {
-    return this._movements;
+    return this.movements$;
   }
 
   get timePlayedString(): string {
@@ -119,11 +119,11 @@ export class GameService {
   }
 
   get playedMoves(): number {
-    return this._playedMoves;
+    return this.playedMoves$;
   }
 
   get secondTileSetted(): boolean {
-    return (this._selectedTile2 !== undefined && this._selectedTile2 !== null);
+    return (this.selectedTile2$ !== undefined && this.selectedTile2$ !== null);
   }
   /* METHODS */
 
@@ -131,12 +131,12 @@ export class GameService {
    * chooses, randomly, the images from the list of tiles that will be used in the game
    */
   private initGameTiles(): void {
-    this._tilesBlocked = false;
+    this.tilesBlocked$ = false;
     const tilesKeys: Array<string> = Object.keys(tiles);
-    this._gameTilesKeys = [];
+    this.gameTilesKeys$ = [];
 
-    while (this._gameTilesKeys.length < (Math.pow(levels.hard, 2) / 2)) {
-      this._gameTilesKeys.push(tilesKeys.splice(Math.floor(Math.random() * tilesKeys.length), 1).toString());
+    while (this.gameTilesKeys$.length < (Math.pow(levels.hard, 2) / 2)) {
+      this.gameTilesKeys$.push(tilesKeys.splice(Math.floor(Math.random() * tilesKeys.length), 1).toString());
     }
   }
 
@@ -144,14 +144,14 @@ export class GameService {
    * inits the grid of tiles for the game
    */
   private initGameGrid() {
-    this._tilesOk.next(false);
-    this._loadedGameTiles = 0;
-    this._totalGameTiles = Math.pow(this._level, 2);
-    const totalImages = this._totalGameTiles / 2;
+    this.tilesOk$.next(false);
+    this.loadedGameTiles$ = 0;
+    this.totalGameTiles$ = Math.pow(this.level$, 2);
+    const totalImages = this.totalGameTiles$ / 2;
     const images = Array()
-      .concat(this._gameTilesKeys.slice(0, totalImages))
-      .concat(this._gameTilesKeys.slice(0, totalImages));
-    this._tiles = Array(this._totalGameTiles).fill('').map(() => {
+      .concat(this.gameTilesKeys$.slice(0, totalImages))
+      .concat(this.gameTilesKeys$.slice(0, totalImages));
+    this.tiles$ = Array(this.totalGameTiles$).fill('').map(() => {
       const tileId = images.splice(Math.floor(Math.random() * images.length), 1).toString();
       const tile: TileImage = {
         id: tileId,
@@ -166,9 +166,9 @@ export class GameService {
    * increase the number of loaded tiles and checks if all are loaded
    */
   tileLoaded(): void {
-    this._loadedGameTiles++;
-    if (this._loadedGameTiles >= this._totalGameTiles) {
-      this._tilesOk.next(true);
+    this.loadedGameTiles$++;
+    if (this.loadedGameTiles$ >= this.totalGameTiles$) {
+      this.tilesOk$.next(true);
     }
   }
 
@@ -176,9 +176,9 @@ export class GameService {
    * starts the game, inits properties and the grid
    */
   startGame(): void {
-    this._movements = 0;
-    this._points = 0;
-    this._started.next(true);
+    this.movements$ = 0;
+    this.points$ = 0;
+    this.started$.next(true);
     this.initGameGrid();
   }
 
@@ -186,9 +186,9 @@ export class GameService {
    * starts the cronometer of the game
    */
   startCronoGame(): void {
-    this._secondsPlayed = 0;
-    this._secondsCrono = 0;
-    this._cronoOn.next(true);
+    this.secondsPlayed$ = 0;
+    this.secondsCrono$ = 0;
+    this.cronoOn$.next(true);
     this.playCrono();
   }
 
@@ -196,41 +196,41 @@ export class GameService {
    * stops the game when user clicks on finish button
    */
   stopGame(): void {
-    this._stopCrono.next();
-    this._secondsCrono = this._secondsPlayed;
+    this.stopCrono$.next();
+    this.secondsCrono$ = this.secondsPlayed$;
   }
 
   /**
    * finishes the game when user wins or decides to quit the game
    */
   finishGame(win: boolean = false): void {
-    this._stopCrono.next();
-    this._cronoOn.next(false);
-    this._crono = null;
-    this._movements = 0;
-    this._started.next(false);
-    this._winedGame.next(win);
+    this.stopCrono$.next();
+    this.cronoOn$.next(false);
+    this.crono$ = null;
+    this.movements$ = 0;
+    this.started$.next(false);
+    this.winedGame$.next(win);
   }
 
   /**
    * fires the subject to restart the cronometer
    */
   restartCrono(): void {
-    this._restartCrono.next();
+    this.restartCrono$.next();
   }
 
   /**
    * starts the crono
    */
   private playCrono(): void {
-    this._crono = timer(0, 1000)
+    this.crono$ = timer(0, 1000)
       .pipe(
-        takeUntil(this._stopCrono),
-        repeatWhen(() => this._restartCrono),
+        takeUntil(this.stopCrono$),
+        repeatWhen(() => this.restartCrono$),
         map(val => this.updateTime(val))
       );
   }
-  
+
   /**
    * updates the played time with the seconds counted
    * by the cronometer before pause (if it was paused)
@@ -238,7 +238,7 @@ export class GameService {
    * @param val seconds counted by the cronometer to add to seconds stored
    */
   private updateTime(val): string {
-    this._secondsPlayed = this._secondsCrono + val;
+    this.secondsPlayed$ = this.secondsCrono$ + val;
     return this.getTimeString();
   }
 
@@ -246,8 +246,8 @@ export class GameService {
    * it formattes a string from the seconds played by the user
    */
   private getTimeString(): string {
-    const minutes: string = `0${(Math.floor(this._secondsPlayed / 60)).toString()}`.substr(-2);
-    const seconds: string = `0${(this._secondsPlayed % 60).toString()}`.substr(-2);
+    const minutes: string = `0${(Math.floor(this.secondsPlayed$ / 60)).toString()}`.substr(-2);
+    const seconds: string = `0${(this.secondsPlayed$ % 60).toString()}`.substr(-2);
     return `${minutes}:${seconds}`;
   }
 
@@ -256,11 +256,11 @@ export class GameService {
    * if it the second, checks if there are equals
    */
   setTurnTile(tile: TileImage): void {
-    if (!this._selectedTile1) {
-      this._selectedTile1 = tile;
-      this._tilesBlocked = false;
+    if (!this.selectedTile1$) {
+      this.selectedTile1$ = tile;
+      this.tilesBlocked$ = false;
     } else {
-      this._selectedTile2 = tile;
+      this.selectedTile2$ = tile;
       this.checkSelectedTiles();
     }
   }
@@ -272,10 +272,10 @@ export class GameService {
    */
   private checkSelectedTiles(): void {
     let success = false;
-    this._movements++;
-    if (this._selectedTile1.id === this._selectedTile2.id) {
-      this._selectedTile1.fixed = true;
-      this._selectedTile2.fixed = true;
+    this.movements$++;
+    if (this.selectedTile1$.id === this.selectedTile2$.id) {
+      this.selectedTile1$.fixed = true;
+      this.selectedTile2$.fixed = true;
       success = true;
     }
     this.delayShowTiles(success);
@@ -290,10 +290,10 @@ export class GameService {
       if (success) {
         this.increasePoints();
       } else {
-        this._hideTiles.next();
+        this.hideTiles$.next();
       }
       this.resetSelectedTiles();
-      this._showCursor.next();
+      this.showCursor$.next();
     });
   }
 
@@ -302,9 +302,9 @@ export class GameService {
    * information of the chosen tiles
    */
   private resetSelectedTiles(): void {
-    this._selectedTile1 = null;
-    this._selectedTile2 = null;
-    this._tilesBlocked = false;
+    this.selectedTile1$ = null;
+    this.selectedTile2$ = null;
+    this.tilesBlocked$ = false;
   }
 
   /**
@@ -312,9 +312,9 @@ export class GameService {
    * and checks if the user has been win the game
    */
   private increasePoints(): void {
-    this._points++;
-    if (this._points === (this._totalGameTiles / 2)) {
-      this._playedMoves = this._movements;
+    this.points$++;
+    if (this.points$ === (this.totalGameTiles$ / 2)) {
+      this.playedMoves$ = this.movements$;
       this.finishGame(true);
     }
   }

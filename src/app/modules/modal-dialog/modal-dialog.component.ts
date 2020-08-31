@@ -50,9 +50,9 @@ const CLASS_BUTTON = {
 })
 export class ModalDialogComponent implements OnInit, OnDestroy {
   private showDialogSubscription: Subscription;
-  private _overlayRef: ElementRef;
+  private overlayRef$: ElementRef;
   @ViewChild('overlay') set overlayRef(overlayRef: ElementRef) {
-    this._overlayRef = overlayRef;
+    this.overlayRef$ = overlayRef;
   }
 
   private isOpen: boolean;
@@ -66,15 +66,15 @@ export class ModalDialogComponent implements OnInit, OnDestroy {
     private modalDialogService: ModalDialogService,
     private renderer: Renderer2,
   ) {}
-  
+
   /**
    * fires when the animation of modal dialog is finished
    */
   onAnimationEvent() {
     if (!this.isOpen) {
-      this.renderer.setStyle(this._overlayRef.nativeElement, 'width', '0vw');
-      this.renderer.setStyle(this._overlayRef.nativeElement, 'height', '0vh');
-      this.modalDialogService.dialogIsClosed();       
+      this.renderer.setStyle(this.overlayRef$.nativeElement, 'width', '0vw');
+      this.renderer.setStyle(this.overlayRef$.nativeElement, 'height', '0vh');
+      this.modalDialogService.dialogIsClosed();
     }
   }
 
@@ -87,11 +87,11 @@ export class ModalDialogComponent implements OnInit, OnDestroy {
       this.isOpen = value;
       if (value) {
         this.renderer.setStyle(document.body, 'overflow', 'hidden');
-        this.renderer.setStyle(this._overlayRef.nativeElement, 'width', '100vw');
-        this.renderer.setStyle(this._overlayRef.nativeElement, 'height', '100vh');
+        this.renderer.setStyle(this.overlayRef$.nativeElement, 'width', '100vw');
+        this.renderer.setStyle(this.overlayRef$.nativeElement, 'height', '100vh');
       } else {
         this.renderer.removeStyle(document.body, 'overflow');
-      }     
+      }
     });
   }
 
@@ -115,14 +115,14 @@ export class ModalDialogComponent implements OnInit, OnDestroy {
    */
   title(): string {
     return this.modalDialogService.title;
-  };
+  }
 
   /**
    * returns the message for the dialog
    */
   message(): string {
     return this.modalDialogService.message;
-  };
+  }
 
   /**
    * returns the buttons to show in the dialog
@@ -152,7 +152,7 @@ export class ModalDialogComponent implements OnInit, OnDestroy {
   /**
    * return if the dialog has buttons or not
    */
-  haveButtons():boolean {    
+  haveButtons(): boolean {
     return (this.buttons().length > 0);
   }
 
