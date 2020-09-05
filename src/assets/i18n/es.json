@@ -75,5 +75,9 @@
       "moves": "Has usado estos movimientos:",
       "time": "Has usado este tiempo:"
     }
+  },
+  "resources-info": {
+    "text-1": "Este juego usa iconos diseñados por:",
+    "text-2": "Disponibles en:"
   }
 }
