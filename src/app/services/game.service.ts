@@ -177,6 +177,7 @@ export class GameService {
    */
   startGame(): void {
     this.movements$ = 0;
+    this.playedMoves$ = 0;
     this.points$ = 0;
     this.started$.next(true);
     this.initGameGrid();
