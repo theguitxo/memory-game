@@ -74,7 +74,8 @@
       "intro": "These are the data of your last game.",
       "moves": "You have made these moves:",
       "time": "You have used this time:"
-    }
+    },
+    "loading-tiles": "Loading images..."
   },
   "resources-info": {
     "text-1": "This game uses icons designed by:",

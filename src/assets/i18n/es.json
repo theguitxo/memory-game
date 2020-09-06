@@ -74,7 +74,8 @@
       "intro": "Estos son los datos de tú ultima partida.",
       "moves": "Has usado estos movimientos:",
       "time": "Has usado este tiempo:"
-    }
+    },
+    "loading-tiles": "Cargando imagenes..."
   },
   "resources-info": {
     "text-1": "Este juego usa iconos diseñados por:",
