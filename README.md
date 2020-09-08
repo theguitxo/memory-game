@@ -2,26 +2,39 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.0.3.
 
-## Development server
+---
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+## Description
 
-## Code scaffolding
+This is a match pairs game with three difficult levels. You must pair each image with their equal.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+---
 
-## Build
+## Run the app
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+### Local machine
 
-## Running unit tests
+For run the app using the local machine as an app server, after cloning the project in a local folder, you must start the server, into the project folder, using the command:
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+`ng serve`
 
-## Running end-to-end tests
+Then, you have to navigate to the address:
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+`http://localhost:4200`
 
-## Further help
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+### In the web
+
+You can run the app navigating to this URL:
+
+[demo](http://memory-game.guitxo.com/)
+
+---
+
+## Screenshot
+
+![Memory Game - Screenshot](./screenshot.png "Memory Game - Screenshot")
+
+
+
+
