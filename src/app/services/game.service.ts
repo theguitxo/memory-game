@@ -155,7 +155,7 @@ export class GameService {
       const tileId = images.splice(Math.floor(Math.random() * images.length), 1).toString();
       const tile: TileImage = {
         id: tileId,
-        path: `/assets/tiles/${tiles[tileId]}`,
+        path: `./assets/tiles/${tiles[tileId]}`,
         fixed: false,
       };
       return tile;

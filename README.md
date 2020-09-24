@@ -27,7 +27,7 @@ Then, you have to navigate to the address:
 
 You can run the app navigating to this URL:
 
-[demo](http://memory-game.guitxo.com/)
+[demo](https://www.guitxo.com/juego-de-memoria-con-angular-9/)
 
 ---
 
