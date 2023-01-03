@@ -1,0 +1,84 @@
+{
+  "title": "Memory game",
+  "language-selector": {
+    "title": "Select language",
+    "languages": {
+      "es": {
+        "title": "Spanish",
+        "icon": "048-spanish-language"
+      },
+      "en": {
+        "title": "English",
+        "icon": "050-english-language"
+      }
+    }
+  },
+  "level-selector": {
+    "title": "Choose difficulty",
+    "levels": {
+      "easy": {
+        "title": "Easy"
+      },
+      "medium": {
+        "title": "Medium"
+      },
+      "hard": {
+        "title": "Hard"
+      }
+    }
+  },
+  "game-buttons": {
+    "play": {
+      "title": "Play"
+    },
+    "finish": {
+      "title": "Finish"
+    }
+  },
+  "game-crono": {
+    "title": "Game time"
+  },
+  "finish-dialog": {
+    "title": "Finish game",
+    "message": "Are you sure to finish this game?",
+    "accept-button": "Accept",
+    "cancel-button": "Cancel"
+  },
+  "game-movements": {
+    "title": "Moves"
+  },
+  "finish-message": {
+    "title": "Game finished",
+    "quit-game": "You have quitted the game. Luck next time!",
+    "win-game": "Congratulations! You have win the game!"
+  },
+  "game-info": {
+    "title": "Information",
+    "text-1": "Classic memory game where you have to match the same cards, discovering two in each turn.",
+    "text-2": "There are three levels of difficulty.",
+    "levels-list": {
+      "easy": {
+        "title": "Easy",
+        "text": "8 pairs of cards."
+      },
+      "medium": {
+        "title": "Medium",
+        "text": "18 pairs of cards."
+      },
+      "hard": {
+        "title": "Hard",
+        "text": "32 pairs of cards."
+      }
+    },
+    "solved": {
+      "intro": "These are the data of your last game.",
+      "moves": "You have made these moves:",
+      "time": "You have used this time:"
+    },
+    "loading-tiles": "Loading images..."
+  },
+  "resources-info": {
+    "text-1": "This game uses icons designed by:",
+    "text-2": "Available in:"
+  }
+}
