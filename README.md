@@ -27,7 +27,9 @@ Then, you have to navigate to the address:
 
 You can run the app navigating to this URL:
 
-[demo](https://guitxo-angular-memory-game.netlify.app/)
+[demo - Netlify](https://guitxo-angular-memory-game.netlify.app/)
+
+[demo - GitHub pages](https://theguitxo.github.io/memory-game/)
 
 ---
 
